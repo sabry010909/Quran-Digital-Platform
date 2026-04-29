@@ -1,60 +1,57 @@
-# موقع القرآن الكريم التفاعلي
 
-## نظرة عامة
-موقع شامل وتفاعلي للقرآن الكريم، يقدم خدمات القراءة والاستماع والتفسير والبحث وأدوات تعليمية متنوعة.
+# 📖 Al-Quran Al-Kareem Interactive Platform
 
-تم إنشاء هذا الموقع بواسطة **المهندس صبري رضوان**.
+An end-to-end, full-stack digital ecosystem for exploring the Holy Quran. This platform provides a seamless experience for reading, listening, and studying the Quran with advanced educational tools.
 
-## ميزات الموقع
+**Architected & Developed by: Eng. Sabry Radwan**
 
-### الصفحة الرئيسية
-- آية اليوم
-- تلاوة اليوم
-- فهرس السور
-- خاصية "البحث في القرآن"
+---
 
-### القراءة
-- عرض السور والآيات مع إمكانية تخصيص حجم الخط واللون
-- وضع القراءة الليلي (الوضع المظلم)
-- زر التفسير بجانب كل آية
+## 🏗️ System Architecture
+The project follows a modular **MVC (Model-View-Controller)** pattern for the backend and a clean, responsive frontend structure:
 
-### الاستماع
-- مشغل صوتي لتلاوة القرآن
-- اختيار القارئ
-- وضع التكرار
-- التحكم في سرعة التلاوة
+- **Backend**: Built with **Node.js** & **Express.js**, managing robust API routes for Quranic content, Tafsir, and User data.
+- **Frontend**: A high-performance UI developed using **HTML5, CSS3 (with Dark Mode support), and JavaScript**.
+- **Database**: **MySQL** integrated for secure user management, progress tracking, and structured content storage.
 
-### التفسير
-- مصادر متعددة للتفسير مع ميزات المقارنة
-- تفسير صوتي مبسط اختياري
+---
 
-### التعلم والحفظ
-- أدوات لتحديد وتتبع الآيات للحفظ
-- اختبارات الحفظ
-- لوحة متابعة تقدم الحفظ
+## ✨ Key Features
+- **Smart Reading & Tafsir**: Customizable font sizes, themes (Dark/Light), and instant Tafsir comparison.
+- **Audio Hub**: Advanced audio player with reciter selection, repetition modes, and playback speed control.
+- **Learning & Memorization (Hifz)**: Personalized dashboards to track progress and interactive memorization tests.
+- **Tajweed Tools**: Visual aids and video lessons to master Quranic recitation rules.
+- **Kids Mode**: A dedicated, simplified interface designed for young learners.
+- **Global Search**: High-speed indexing for Ayahs, Surahs, and topics.
 
-### التجويد
-- دروس فيديو أو نصية
-- عرض الآيات بألوان مختلفة حسب قواعد التجويد
+---
 
-### ميزات إضافية
-- واجهة وضع الأطفال للتعلم
-- قسم الأسئلة والأجوبة حول القرآن
+## 🛠️ Technology Stack
+- **Languages**: JavaScript (ES6+), SQL, HTML, CSS.
+- **Runtime**: Node.js.
+- **Web Framework**: Express.js.
+- **Persistence**: MySQL with structured relational schema.
+- **Deployment**: Local server configuration with NPM scripts.
 
-## التقنيات المستخدمة
-- الواجهة الخلفية: Node.js
-- الواجهة الأمامية: HTML, CSS, JavaScript
-- قاعدة البيانات: MySQL لتخزين بيانات المستخدمين وتقدم الاستخدام
-- واجهات برمجة التطبيقات: مكتبات متخصصة للنصوص القرآنية والصوتيات
+---
 
-## متطلبات التشغيل
-1. تثبيت Node.js و npm
-2. تثبيت تبعيات المشروع باستخدام `npm install`
-3. إعداد قاعدة البيانات
-4. تشغيل الخادم الخلفي باستخدام `npm start`
-5. الوصول إلى الموقع عبر متصفح الويب
+## 📂 Project Structure
+*Organized for scalability and maintainability:*
+- `/backend`: Core logic, controllers, and API routing.
+- `/frontend`: Responsive pages and optimized assets (CSS/JS).
+- `/database`: Relational schema designs and setup scripts.
 
-## هيكل المشروع
+---
+
+## 🎓 Academic Vision
+This platform demonstrates my proficiency in **Full-Stack Web Development** and **Database Management**. It serves as a practical application of the concepts I intend to master during my Master's studies, focusing on **Scalable Software Architectures**.
+
+---
+
+## 📜 License & Copyright
+All rights reserved © **Eng. Sabry Radwan**.
+
+ 
 ```
 QuranWebsite/
 ├── backend/
@@ -110,32 +107,3 @@ QuranWebsite/
 ├── README.md
 ```
 
-## تعليمات التثبيت والتشغيل
-1. استنساخ المستودع:
-   ```
-   git clone https://github.com/username/quran-website.git
-   cd quran-website
-   ```
-
-2. تثبيت التبعيات:
-   ```
-   npm install
-   ```
-
-3. إعداد قاعدة البيانات:
-   ```
-   npm run setup-db
-   ```
-
-4. تشغيل الخادم:
-   ```
-   npm start
-   ```
-
-5. فتح المتصفح والانتقال إلى:
-   ```
-   http://localhost:3000
-   ```
-
-## الترخيص
-جميع الحقوق محفوظة © المهندس صبري رضوان

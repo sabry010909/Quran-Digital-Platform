@@ -1,0 +1,90 @@
+{
+    "folders": [
+        {
+            "name": "موقع القرآن الكريم",
+            "path": "."
+        }
+    ],
+    "settings": {
+        "editor.fontSize": 14,
+        "editor.fontFamily": "'Tajawal', 'Amiri', 'Consolas', 'Courier New', monospace",
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": true
+        },
+        "files.autoSave": "afterDelay",
+        "files.autoSaveDelay": 1000,
+        "files.encoding": "utf8",
+        "terminal.integrated.defaultProfile.windows": "Command Prompt",
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.defaultProfile.osx": "zsh",
+        "workbench.colorTheme": "Default Dark+",
+        "workbench.iconTheme": "vs-seti",
+        "javascript.updateImportsOnFileMove.enabled": "always",
+        "javascript.suggest.autoImports": true,
+        "html.format.wrapLineLength": 120,
+        "css.validate": true,
+        "css.lint.duplicateProperties": "warning",
+        "css.lint.important": "warning",
+        "css.lint.zeroUnits": "warning",
+        "explorer.compactFolders": false,
+        "explorer.confirmDelete": true,
+        "explorer.confirmDragAndDrop": true,
+        "search.exclude": {
+            "**/node_modules": true,
+            "**/bower_components": true,
+            "**/*.code-search": true
+        },
+        "git.enableSmartCommit": true,
+        "git.confirmSync": false,
+        "liveServer.settings.donotShowInfoMsg": true,
+        "liveServer.settings.donotVerifyTags": true,
+        "liveServer.settings.port": 5500,
+        "emmet.includeLanguages": {
+            "javascript": "javascriptreact"
+        }
+    },
+    "extensions": {
+        "recommendations": [
+            "dbaeumer.vscode-eslint",
+            "esbenp.prettier-vscode",
+            "ritwickdey.liveserver",
+            "ms-vscode.vscode-node-azure-pack",
+            "formulahendry.auto-rename-tag",
+            "streetsidesoftware.code-spell-checker",
+            "streetsidesoftware.code-spell-checker-arabic",
+            "ms-vsliveshare.vsliveshare",
+            "eamodio.gitlens",
+            "christian-kohler.path-intellisense",
+            "bradlc.vscode-tailwindcss"
+        ]
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "type": "node",
+                "request": "launch",
+                "name": "تشغيل خادم القرآن الكريم",
+                "skipFiles": [
+                    "<node_internals>/**"
+                ],
+                "program": "${workspaceFolder}/backend/server.js",
+                "restart": true,
+                "runtimeExecutable": "nodemon",
+                "console": "integratedTerminal"
+            },
+            {
+                "type": "node",
+                "request": "launch",
+                "name": "إعداد قاعدة البيانات",
+                "skipFiles": [
+                    "<node_internals>/**"
+                ],
+                "program": "${workspaceFolder}/database/setup.js",
+                "console": "integratedTerminal"
+            }
+        ]
+    }
+}

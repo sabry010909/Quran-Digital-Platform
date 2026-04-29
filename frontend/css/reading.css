@@ -1,0 +1,447 @@
+/* reading.css - أنماط صفحة القراءة */
+
+/* أنماط شريط الأدوات */
+.reading-toolbar {
+    background-color: var(--bg-white);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-md) 0;
+    position: sticky;
+    top: 60px;
+    z-index: 900;
+}
+
+.reading-toolbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.toolbar-section {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.surah-selector,
+.ayah-selector,
+.page-selector {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.surah-selector select,
+.ayah-selector select,
+.page-selector select {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    font-family: var(--font-primary);
+    min-width: 150px;
+}
+
+.display-options {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.font-size-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.display-mode {
+    display: flex;
+    align-items: center;
+}
+
+/* أنماط التبديل */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin-left: var(--spacing-sm);
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: var(--transition-normal);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: var(--transition-normal);
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 24px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.switch-label {
+    margin-right: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    white-space: nowrap;
+}
+
+/* أنماط محتوى القراءة */
+.reading-content {
+    padding: var(--spacing-xl) 0;
+}
+
+.reading-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.view-options {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.action-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.quran-content {
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--spacing-xl);
+    min-height: 400px;
+}
+
+/* أنماط السورة */
+.surah-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.surah-title {
+    font-size: var(--font-size-xxl);
+    margin-bottom: var(--spacing-sm);
+    color: var(--primary-color);
+}
+
+.surah-info {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    color: var(--text-medium);
+}
+
+.bismillah {
+    text-align: center;
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* أنماط الآيات */
+.ayahs-container {
+    line-height: 2;
+}
+
+.ayah {
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ayah:last-child {
+    border-bottom: none;
+}
+
+.ayah-text {
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-sm);
+}
+
+.ayah-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ayah-number {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    font-size: var(--font-size-sm);
+}
+
+.action-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+/* أنماط التنقل بين الصفحات */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-info {
+    font-weight: 700;
+}
+
+/* أنماط مشغل الصوت المصغر */
+.mini-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-white);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    padding: var(--spacing-md) 0;
+    z-index: 1000;
+}
+
+.mini-player .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
+}
+
+.player-info {
+    flex: 1;
+}
+
+.player-text h3 {
+    margin-bottom: 0;
+    font-size: var(--font-size-lg);
+}
+
+.player-text p {
+    margin-bottom: 0;
+    color: var(--text-medium);
+    font-size: var(--font-size-sm);
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.player-progress {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.progress-container {
+    flex: 1;
+    height: 4px;
+    background-color: var(--border-color);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--primary-color);
+    width: 0;
+}
+
+.time-display {
+    font-size: var(--font-size-sm);
+    color: var(--text-medium);
+    white-space: nowrap;
+}
+
+.player-settings {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.volume-control input {
+    width: 80px;
+}
+
+/* أنماط الوضع المظلم */
+body.dark-mode {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+}
+
+body.dark-mode .quran-content,
+body.dark-mode .reading-toolbar,
+body.dark-mode .mini-player {
+    background-color: #1a2634;
+    color: var(--text-white);
+}
+
+body.dark-mode .surah-title {
+    color: var(--primary-light);
+}
+
+body.dark-mode .ayah-text {
+    color: var(--text-white);
+}
+
+body.dark-mode .btn-outline {
+    border-color: var(--primary-light);
+    color: var(--primary-light);
+}
+
+body.dark-mode .btn-outline:hover {
+    background-color: var(--primary-light);
+    color: var(--bg-dark);
+}
+
+body.dark-mode .btn-icon {
+    color: var(--primary-light);
+    border-color: var(--primary-light);
+}
+
+body.dark-mode .btn-icon:hover {
+    background-color: var(--primary-light);
+    color: var(--bg-dark);
+}
+
+/* أنماط الطباعة */
+@media print {
+    .reading-toolbar,
+    .mini-player,
+    .pagination,
+    .reading-options,
+    .ayah-actions {
+        display: none;
+    }
+    
+    .quran-content {
+        box-shadow: none;
+        padding: 0;
+    }
+    
+    .ayah {
+        page-break-inside: avoid;
+    }
+}
+
+/* الاستجابة للشاشات المختلفة */
+@media (max-width: 992px) {
+    .reading-toolbar .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .toolbar-section {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .mini-player .container {
+        flex-wrap: wrap;
+    }
+    
+    .player-progress {
+        order: 1;
+        width: 100%;
+        margin-top: var(--spacing-sm);
+    }
+}
+
+@media (max-width: 768px) {
+    .surah-selector,
+    .ayah-selector,
+    .page-selector {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .surah-selector select,
+    .ayah-selector select,
+    .page-selector select {
+        width: 100%;
+    }
+    
+    .reading-options {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .view-options,
+    .action-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .pagination {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .mini-player .container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .player-info,
+    .player-controls,
+    .player-settings {
+        width: 100%;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>القرآن الكريم - الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- القسم العلوي -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1> القرآن الكريم</h1>
+            </div>
+            <nav>
+                <ul class="main-menu">
+                    <li class="active"><a href="index.html">الرئيسية</a></li>
+                    <li><a href="pages/reading.html">القراءة</a></li>
+                    <li><a href="pages/listening.html">الاستماع</a></li>
+                    <li><a href="pages/tafsir.html">التفسير</a></li>
+                    <li><a href="pages/learning.html">التعلم والحفظ</a></li>
+                    <li><a href="pages/tajweed.html">التجويد</a></li>
+                    <li><a href="pages/kids.html">وضع الأطفال</a></li>
+                    <li><a href="pages/qa.html">أسئلة وأجوبة</a></li>
+                </ul>
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+            <div class="user-actions">
+                <button id="loginBtn" class="btn btn-outline">تسجيل الدخول</button>
+                <button id="registerBtn" class="btn btn-primary">إنشاء حساب</button>
+                <div class="user-profile" style="display: none;">
+                    <img src="assets/images/avatar.png" alt="صورة المستخدم" class="avatar">
+                    <span class="username">اسم المستخدم</span>
+                    <div class="dropdown-menu">
+                        <a href="#" id="profileLink">الملف الشخصي</a>
+                        <a href="#" id="settingsLink">الإعدادات</a>
+                        <a href="#" id="logoutLink">تسجيل الخروج</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <main>
+        <!-- قسم البحث -->
+        <section class="search-section">
+            <div class="container">
+                <div class="search-container">
+                    <h2>ابحث في القرآن الكريم</h2>
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="ابحث عن آية أو كلمة...">
+                        <button id="searchBtn" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                            بحث
+                        </button>
+                    </div>
+                    <div class="search-options">
+                        <label>
+                            <input type="radio" name="searchType" value="text" checked>
+                            نص الآيات
+                        </label>
+                        <label>
+                            <input type="radio" name="searchType" value="tafsir">
+                            التفسير
+                        </label>
+                        <label>
+                            <input type="radio" name="searchType" value="translation">
+                            الترجمة
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم آية اليوم -->
+        <section class="verse-of-day">
+            <div class="container">
+                <div class="section-header">
+                    <h2>آية اليوم</h2>
+                    <div class="actions">
+                        <button id="shareVerseBtn" class="btn btn-icon" title="مشاركة">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                        <button id="copyVerseBtn" class="btn btn-icon" title="نسخ">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                        <button id="playVerseBtn" class="btn btn-icon" title="استماع">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="verse-container">
+                    <div class="verse-text">
+                        <p class="arabic-text">وَمَا خَلَقْتُ الْجِنَّ وَالْإِنسَ إِلَّا لِيَعْبُدُونِ</p>
+                        <div class="verse-info">
+                            <span class="surah-name">سورة الذاريات</span>
+                            <span class="verse-number">الآية: 56</span>
+                        </div>
+                    </div>
+                    <div class="verse-tafsir">
+                        <h3>التفسير الميسر:</h3>
+                        <p>وما خلقت الجن والإنس إلا ليعبدون وحدي لا شريك لي، ويمتثلوا أمري.</p>
+                        <a href="pages/tafsir.html?surah=51&ayah=56" class="btn btn-link">قراءة المزيد من التفسير</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم تلاوة اليوم -->
+        <section class="recitation-of-day">
+            <div class="container">
+                <div class="section-header">
+                    <h2>تلاوة اليوم</h2>
+                </div>
+                <div class="recitation-container">
+                    <div class="reciter-info">
+                        <img src="assets/images/reciters/alafasy.jpg" alt="مشاري راشد العفاسي" class="reciter-image">
+                        <div class="reciter-details">
+                            <h3>مشاري راشد العفاسي</h3>
+                            <p>سورة الفاتحة</p>
+                        </div>
+                    </div>
+                    <div class="audio-player">
+                        <audio id="recitationAudio" controls>
+                            <source src="assets/audio/alafasy/surah_1.mp3" type="audio/mpeg">
+                            متصفحك لا يدعم تشغيل الصوت.
+                        </audio>
+                        <div class="player-controls">
+                            <button id="playRecitationBtn" class="btn btn-icon" title="تشغيل">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <button id="pauseRecitationBtn" class="btn btn-icon" title="إيقاف مؤقت">
+                                <i class="fas fa-pause"></i>
+                            </button>
+                            <button id="stopRecitationBtn" class="btn btn-icon" title="إيقاف">
+                                <i class="fas fa-stop"></i>
+                            </button>
+                            <button id="repeatRecitationBtn" class="btn btn-icon" title="تكرار">
+                                <i class="fas fa-redo"></i>
+                            </button>
+                            <div class="volume-control">
+                                <i class="fas fa-volume-up"></i>
+                                <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recitation-actions">
+                        <a href="pages/listening.html?surah=1&reciter=mishari-rashid-alafasy" class="btn btn-primary">الاستماع للمزيد</a>
+                        <button id="downloadRecitationBtn" class="btn btn-outline">
+                            <i class="fas fa-download"></i>
+                            تحميل
+                        </button>
+                        <button id="addToFavoritesBtn" class="btn btn-icon" title="إضافة للمفضلة">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم فهرس السور -->
+        <section class="surah-index">
+            <div class="container">
+                <div class="section-header">
+                    <h2>فهرس السور</h2>
+                    <div class="filter-options">
+                        <select id="sortSurahsBy">
+                            <option value="order">ترتيب المصحف</option>
+                            <option value="name">اسم السورة</option>
+                            <option value="revelation">ترتيب النزول</option>
+                            <option value="ayahs">عدد الآيات</option>
+                        </select>
+                        <div class="filter-buttons">
+                            <button class="btn btn-sm active" data-filter="all">الكل</button>
+                            <button class="btn btn-sm" data-filter="makki">مكية</button>
+                            <button class="btn btn-sm" data-filter="madani">مدنية</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="surahs-grid">
+                    <!-- سيتم إنشاء هذا الجزء ديناميكيًا باستخدام JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم الميزات -->
+        <section class="features-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>ميزات الموقع</h2>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3>القراءة</h3>
+                        <p>اقرأ القرآن الكريم بخط واضح مع إمكانية تخصيص حجم الخط واللون والوضع المظلم.</p>
+                        <a href="pages/reading.html" class="btn btn-link">ابدأ القراءة</a>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <h3>الاستماع</h3>
+                        <p>استمع إلى تلاوات القرآن الكريم بأصوات أشهر القراء مع إمكانية التحكم في التشغيل.</p>
+                        <a href="pages/listening.html" class="btn btn-link">استمع الآن</a>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3>التفسير</h3>
+                        <p>اطلع على تفاسير القرآن الكريم من مصادر متعددة مع إمكانية المقارنة بينها.</p>
+                        <a href="pages/tafsir.html" class="btn btn-link">اقرأ التفسير</a>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>التعلم والحفظ</h3>
+                        <p>استخدم أدوات التعلم والحفظ لمساعدتك في حفظ القرآن الكريم ومتابعة تقدمك.</p>
+                        <a href="pages/learning.html" class="btn btn-link">ابدأ التعلم</a>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <h3>التجويد</h3>
+                        <p>تعلم أحكام التجويد مع دروس نصية وفيديو وعرض الآيات بألوان مختلفة حسب قواعد التجويد.</p>
+                        <a href="pages/tajweed.html" class="btn btn-link">تعلم التجويد</a>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <h3>وضع الأطفال</h3>
+                        <p>واجهة خاصة للأطفال لتعلم القرآن الكريم بطريقة سهلة وممتعة مع ألعاب تعليمية.</p>
+                        <a href="pages/kids.html" class="btn btn-link">وضع الأطفال</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- القسم السفلي -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>القرآن الكريم</h2>
+                    <p>موقع شامل للقرآن الكريم يقدم خدمات القراءة والاستماع والتفسير والتعلم</p>
+                </div>
+                <div class="footer-links">
+                    <div class="links-column">
+                        <h3>روابط سريعة</h3>
+                        <ul>
+                            <li><a href="index.html">الرئيسية</a></li>
+                            <li><a href="pages/reading.html">القراءة</a></li>
+                            <li><a href="pages/listening.html">الاستماع</a></li>
+                            <li><a href="pages/tafsir.html">التفسير</a></li>
+                            <li><a href="pages/learning.html">التعلم والحفظ</a></li>
+                        </ul>
+                    </div>
+                    <div class="links-column">
+                        <h3>الدعم</h3>
+                        <ul>
+                            <li><a href="pages/contact.html">اتصل بنا</a></li>
+                            <li><a href="pages/faq.html">الأسئلة الشائعة</a></li>
+                            <li><a href="pages/privacy.html">سياسة الخصوصية</a></li>
+                            <li><a href="pages/terms.html">شروط الاستخدام</a></li>
+                        </ul>
+                    </div>
+                    <div class="links-column">
+                        <h3>تابعنا</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة &copy; 2025 - موقع القرآن الكريم</p>
+                <p>تم إنشاء هذا الموقع بواسطة <strong>المهندس صبري رضوان</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- نوافذ منبثقة -->
+    <!-- نافذة تسجيل الدخول -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>تسجيل الدخول</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">البريد الإلكتروني</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">كلمة المرور</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">تسجيل الدخول</button>
+                </div>
+                <div class="form-footer">
+                    <a href="#" id="forgotPasswordLink">نسيت كلمة المرور؟</a>
+                    <a href="#" id="showRegisterLink">إنشاء حساب جديد</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة إنشاء حساب -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>إنشاء حساب جديد</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">الاسم</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerUsername">اسم المستخدم</label>
+                    <input type="text" id="registerUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">البريد الإلكتروني</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">كلمة المرور</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">تأكيد كلمة المرور</label>
+                    <input type="password" id="registerConfirmPassword" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">إنشاء حساب</button>
+                </div>
+                <div class="form-footer">
+                    <a href="#" id="showLoginLink">لديك حساب بالفعل؟ تسجيل الدخول</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ملفات JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/quran.js"></script>
+    <script src="js/audio-player.js"></script>
+</body>
+</html>

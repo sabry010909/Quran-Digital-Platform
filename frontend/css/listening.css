@@ -1,0 +1,490 @@
+/* listening.css - أنماط صفحة الاستماع */
+
+/* قسم مشغل الصوت الرئيسي */
+.audio-player-section {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--primary-color);
+    color: var(--text-white);
+}
+
+.player-container {
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-lg);
+    color: var(--text-dark);
+}
+
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.player-info h2 {
+    margin-bottom: var(--spacing-xs);
+    color: var(--primary-color);
+}
+
+.player-info p {
+    margin-bottom: 0;
+    color: var(--text-medium);
+}
+
+.player-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+/* أنماط التصور المرئي للصوت */
+.player-visualization {
+    height: 120px;
+    background-color: var(--bg-light);
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--spacing-lg);
+    overflow: hidden;
+    position: relative;
+}
+
+.waveform {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(31, 110, 140, 0.1), rgba(31, 110, 140, 0.3));
+}
+
+/* أنماط شريط التقدم */
+.player-progress {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.progress-container {
+    flex: 1;
+    height: 6px;
+    background-color: var(--border-color);
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--primary-color);
+    width: 0;
+}
+
+/* أنماط أزرار التحكم */
+.player-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.main-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.btn-lg {
+    width: 60px;
+    height: 60px;
+    font-size: var(--font-size-xl);
+}
+
+.secondary-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.volume-control, .playback-speed, .repeat-control {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.volume-control input {
+    width: 100px;
+}
+
+/* أنماط خيارات السرعة والتكرار */
+.speed-options, .repeat-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-md);
+    z-index: 100;
+    min-width: 200px;
+    margin-top: var(--spacing-sm);
+}
+
+.speed-option {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+    border: none;
+    background-color: var(--bg-light);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+}
+
+.speed-option:hover {
+    background-color: var(--primary-light);
+    color: var(--text-white);
+}
+
+.speed-option.active {
+    background-color: var(--primary-color);
+    color: var(--text-white);
+}
+
+.repeat-count {
+    margin-bottom: var(--spacing-md);
+}
+
+.repeat-count label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+}
+
+.repeat-count input {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+}
+
+.repeat-range {
+    margin-bottom: var(--spacing-sm);
+}
+
+.range-inputs {
+    margin-top: var(--spacing-sm);
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.range-inputs .form-group {
+    flex: 1;
+}
+
+/* قسم اختيار السورة والقارئ */
+.selection-section {
+    padding: var(--spacing-xl) 0;
+}
+
+.selection-container {
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.selection-tabs {
+    display: flex;
+    background-color: var(--bg-light);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+    flex: 1;
+    padding: var(--spacing-md);
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--text-medium);
+    transition: var(--transition-fast);
+}
+
+.tab-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.selection-content {
+    padding: var(--spacing-lg);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* أنماط البحث والتصفية */
+.search-filter {
+    margin-bottom: var(--spacing-lg);
+}
+
+.search-filter input {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.filter-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.filter-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+/* أنماط قائمة السور */
+.surahs-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.surah-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition-fast);
+}
+
+.surah-item:hover {
+    background-color: var(--bg-light);
+}
+
+.surah-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.surah-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    border-radius: 50%;
+    font-weight: 700;
+}
+
+.surah-name-container h3 {
+    margin-bottom: 0;
+    font-size: var(--font-size-md);
+}
+
+.surah-details {
+    margin-bottom: 0;
+    font-size: var(--font-size-sm);
+    color: var(--text-medium);
+}
+
+.surah-details span {
+    margin-left: var(--spacing-md);
+}
+
+/* أنماط شبكة القراء */
+.reciters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.reciter-card {
+    background-color: var(--bg-light);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    text-align: center;
+    transition: var(--transition-fast);
+}
+
+.reciter-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.reciter-image-container {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto var(--spacing-md);
+}
+
+.reciter-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.reciter-info h3 {
+    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-md);
+}
+
+.reciter-info p {
+    margin-bottom: var(--spacing-md);
+    color: var(--text-medium);
+    font-size: var(--font-size-sm);
+}
+
+/* أنماط قائمة المفضلة */
+.favorites-empty {
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--text-medium);
+}
+
+.favorite-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.favorite-info h3 {
+    margin-bottom: 0;
+    font-size: var(--font-size-md);
+}
+
+.favorite-info p {
+    margin-bottom: 0;
+    color: var(--text-medium);
+    font-size: var(--font-size-sm);
+}
+
+.favorite-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+/* قسم التلاوات المقترحة */
+.suggested-section {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--bg-light);
+}
+
+.suggested-section h2 {
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+.suggested-recitations {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.recitation-card {
+    background-color: var(--bg-white);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-fast);
+}
+
+.recitation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.recitation-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.reciter-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.recitation-details h3 {
+    margin-bottom: 0;
+    font-size: var(--font-size-md);
+}
+
+.recitation-details p {
+    margin-bottom: 0;
+    color: var(--text-medium);
+    font-size: var(--font-size-sm);
+}
+
+.recitation-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* الاستجابة للشاشات المختلفة */
+@media (max-width: 992px) {
+    .player-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+    }
+    
+    .player-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    .secondary-controls {
+        flex-wrap: wrap;
+        gap: var(--spacing-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .main-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .filter-options {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .filter-options select {
+        width: 100%;
+    }
+    
+    .reciters-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    .suggested-recitations {
+        grid-template-columns: 1fr;
+    }
+}

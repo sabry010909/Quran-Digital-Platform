@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>القرآن الكريم - صفحة الاستماع</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/listening.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- القسم العلوي -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>القرآن الكريم</h1>
+            </div>
+            <nav>
+                <ul class="main-menu">
+                    <li><a href="../index.html">الرئيسية</a></li>
+                    <li><a href="reading.html">القراءة</a></li>
+                    <li class="active"><a href="listening.html">الاستماع</a></li>
+                    <li><a href="tafsir.html">التفسير</a></li>
+                    <li><a href="learning.html">التعلم والحفظ</a></li>
+                    <li><a href="tajweed.html">التجويد</a></li>
+                    <li><a href="kids.html">وضع الأطفال</a></li>
+                    <li><a href="qa.html">أسئلة وأجوبة</a></li>
+                </ul>
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+            <div class="user-actions">
+                <button id="loginBtn" class="btn btn-outline">تسجيل الدخول</button>
+                <button id="registerBtn" class="btn btn-primary">إنشاء حساب</button>
+                <div class="user-profile" style="display: none;">
+                    <img src="../assets/images/avatar.png" alt="صورة المستخدم" class="avatar">
+                    <span class="username">اسم المستخدم</span>
+                    <div class="dropdown-menu">
+                        <a href="#" id="profileLink">الملف الشخصي</a>
+                        <a href="#" id="settingsLink">الإعدادات</a>
+                        <a href="#" id="logoutLink">تسجيل الخروج</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <main>
+        <!-- قسم مشغل الصوت الرئيسي -->
+        <section class="audio-player-section">
+            <div class="container">
+                <div class="player-container">
+                    <div class="player-header">
+                        <div class="player-info">
+                            <h2 id="playerTitle">سورة الفاتحة</h2>
+                            <p id="playerSubtitle">القارئ: <span id="reciterName">مشاري راشد العفاسي</span></p>
+                        </div>
+                        <div class="player-actions">
+                            <button id="downloadAudioBtn" class="btn btn-outline">
+                                <i class="fas fa-download"></i>
+                                تحميل
+                            </button>
+                            <button id="addToFavoritesBtn" class="btn btn-outline">
+                                <i class="far fa-heart"></i>
+                                إضافة للمفضلة
+                            </button>
+                            <button id="shareAudioBtn" class="btn btn-outline">
+                                <i class="fas fa-share-alt"></i>
+                                مشاركة
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="player-visualization">
+                        <div class="waveform" id="waveform"></div>
+                    </div>
+                    
+                    <div class="player-progress">
+                        <span id="currentTime">0:00</span>
+                        <div class="progress-container">
+                            <div id="audioProgressBar" class="progress-bar"></div>
+                        </div>
+                        <span id="duration">0:00</span>
+                    </div>
+                    
+                    <div class="player-controls">
+                        <div class="main-controls">
+                            <button id="prevSurahBtn" class="btn btn-icon" title="السورة السابقة">
+                                <i class="fas fa-step-backward"></i>
+                            </button>
+                            <button id="prevAyahBtn" class="btn btn-icon" title="الآية السابقة">
+                                <i class="fas fa-backward"></i>
+                            </button>
+                            <button id="playRecitationBtn" class="btn btn-icon btn-lg" title="تشغيل">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <button id="pauseRecitationBtn" class="btn btn-icon btn-lg" title="إيقاف مؤقت" style="display: none;">
+                                <i class="fas fa-pause"></i>
+                            </button>
+                            <button id="stopRecitationBtn" class="btn btn-icon" title="إيقاف">
+                                <i class="fas fa-stop"></i>
+                            </button>
+                            <button id="nextAyahBtn" class="btn btn-icon" title="الآية التالية">
+                                <i class="fas fa-forward"></i>
+                            </button>
+                            <button id="nextSurahBtn" class="btn btn-icon" title="السورة التالية">
+                                <i class="fas fa-step-forward"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="secondary-controls">
+                            <div class="volume-control">
+                                <button id="muteBtn" class="btn btn-icon" title="كتم الصوت">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1">
+                            </div>
+                            
+                            <div class="playback-speed">
+                                <button id="speedBtn" class="btn btn-icon" title="سرعة التشغيل">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </button>
+                                <div class="speed-options" style="display: none;">
+                                    <button data-speed="0.5" class="speed-option">0.5x</button>
+                                    <button data-speed="0.75" class="speed-option">0.75x</button>
+                                    <button data-speed="1" class="speed-option active">1x</button>
+                                    <button data-speed="1.25" class="speed-option">1.25x</button>
+                                    <button data-speed="1.5" class="speed-option">1.5x</button>
+                                    <button data-speed="2" class="speed-option">2x</button>
+                                </div>
+                            </div>
+                            
+                            <div class="repeat-control">
+                                <button id="repeatRecitationBtn" class="btn btn-icon" title="تكرار">
+                                    <i class="fas fa-redo"></i>
+                                </button>
+                                <div class="repeat-options" style="display: none;">
+                                    <div class="repeat-count">
+                                        <label for="repeatCountInput">عدد مرات التكرار:</label>
+                                        <input type="number" id="repeatCountInput" min="1" max="10" value="1">
+                                    </div>
+                                    <div class="repeat-range">
+                                        <label>
+                                            <input type="checkbox" id="repeatRangeCheck">
+                                            تكرار نطاق محدد
+                                        </label>
+                                        <div class="range-inputs" style="display: none;">
+                                            <div class="form-group">
+                                                <label for="repeatStartAyah">من الآية:</label>
+                                                <input type="number" id="repeatStartAyah" min="1" value="1">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="repeatEndAyah">إلى الآية:</label>
+                                                <input type="number" id="repeatEndAyah" min="1" value="7">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <audio id="recitationAudio" preload="auto">
+                        <source src="" type="audio/mpeg">
+                        متصفحك لا يدعم تشغيل الصوت.
+                    </audio>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم اختيار السورة والقارئ -->
+        <section class="selection-section">
+            <div class="container">
+                <div class="selection-container">
+                    <div class="selection-tabs">
+                        <button class="tab-btn active" data-tab="surahs">السور</button>
+                        <button class="tab-btn" data-tab="reciters">القراء</button>
+                        <button class="tab-btn" data-tab="favorites">المفضلة</button>
+                    </div>
+                    
+                    <div class="selection-content">
+                        <!-- قائمة السور -->
+                        <div class="tab-content active" id="surahsTab">
+                            <div class="search-filter">
+                                <input type="text" id="surahSearch" placeholder="ابحث عن سورة...">
+                                <div class="filter-options">
+                                    <select id="sortSurahsBy">
+                                        <option value="order">ترتيب المصحف</option>
+                                        <option value="name">اسم السورة</option>
+                                        <option value="revelation">ترتيب النزول</option>
+                                        <option value="ayahs">عدد الآيات</option>
+                                    </select>
+                                    <div class="filter-buttons">
+                                        <button class="btn btn-sm active" data-filter="all">الكل</button>
+                                        <button class="btn btn-sm" data-filter="makki">مكية</button>
+                                        <button class="btn btn-sm" data-filter="madani">مدنية</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="surahs-list">
+                                <!-- سيتم إضافة السور ديناميكيًا -->
+                                <div class="loading-spinner">جاري تحميل السور...</div>
+                            </div>
+                        </div>
+                        
+                        <!-- قائمة القراء -->
+                        <div class="tab-content" id="recitersTab">
+                            <div class="search-filter">
+                                <input type="text" id="reciterSearch" placeholder="ابحث عن قارئ...">
+                                <div class="filter-options">
+                                    <select id="sortRecitersBy">
+                                        <option value="name">الاسم</option>
+                                        <option value="popularity">الشهرة</option>
+                                    </select>
+                                    <div class="filter-buttons">
+                                        <button class="btn btn-sm active" data-style="all">الكل</button>
+                                        <button class="btn btn-sm" data-style="murattal">مرتل</button>
+                                        <button class="btn btn-sm" data-style="mujawwad">مجود</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="reciters-grid">
+                                <!-- سيتم إضافة القراء ديناميكيًا -->
+                                <div class="loading-spinner">جاري تحميل القراء...</div>
+                            </div>
+                        </div>
+                        
+                        <!-- قائمة المفضلة -->
+                        <div class="tab-content" id="favoritesTab">
+                            <div class="favorites-empty" style="display: none;">
+                                <p>لا توجد تلاوات في المفضلة.</p>
+                                <p>يمكنك إضافة التلاوات المفضلة لديك بالضغط على زر "إضافة للمفضلة" أثناء الاستماع.</p>
+                            </div>
+                            
+                            <div class="favorites-list">
+                                <!-- سيتم إضافة التلاوات المفضلة ديناميكيًا -->
+                                <div class="loading-spinner">جاري تحميل المفضلة...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم التلاوات المقترحة -->
+        <section class="suggested-section">
+            <div class="container">
+                <h2>تلاوات مقترحة</h2>
+                
+                <div class="suggested-recitations">
+                    <div class="recitation-card">
+                        <div class="recitation-info">
+                            <img src="../assets/images/reciters/alafasy.jpg" alt="مشاري راشد العفاسي" class="reciter-image">
+                            <div class="recitation-details">
+                                <h3>سورة الكهف</h3>
+                                <p>مشاري راشد العفاسي</p>
+                            </div>
+                        </div>
+                        <div class="recitation-actions">
+                            <button class="btn btn-primary play-recitation">
+                                <i class="fas fa-play"></i>
+                                استماع
+                            </button>
+                            <button class="btn btn-icon add-to-favorites" title="إضافة للمفضلة">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="recitation-card">
+                        <div class="recitation-info">
+                            <img src="../assets/images/reciters/abdul-basit.jpg" alt="عبد الباسط عبد الصمد" class="reciter-image">
+                            <div class="recitation-details">
+                                <h3>سورة يس</h3>
+                                <p>عبد الباسط عبد الصمد</p>
+                            </div>
+                        </div>
+                        <div class="recitation-actions">
+                            <button class="btn btn-primary play-recitation">
+                                <i class="fas fa-play"></i>
+                                استماع
+                            </button>
+                            <button class="btn btn-icon add-to-favorites" title="إضافة للمفضلة">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="recitation-card">
+                        <div class="recitation-info">
+                            <img src="../assets/images/reciters/al-husary.jpg" alt="محمود خليل الحصري" class="reciter-image">
+                            <div class="recitation-details">
+                                <h3>سورة الرحمن</h3>
+                                <p>محمود خليل الحصري</p>
+                            </div>
+                        </div>
+                        <div class="recitation-actions">
+                            <button class="btn btn-primary play-recitation">
+                                <i class="fas fa-play"></i>
+                                استماع
+                            </button>
+                            <button class="btn btn-icon add-to-favorites" title="إضافة للمفضلة">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="recitation-card">
+                        <div class="recitation-info">
+                            <img src="../assets/images/reciters/al-minshawi.jpg" alt="محمد صديق المنشاوي" class="reciter-image">
+                            <div class="recitation-details">
+                                <h3>سورة الواقعة</h3>
+                                <p>محمد صديق المنشاوي</p>
+                            </div>
+                        </div>
+                        <div class="recitation-actions">
+                            <button class="btn btn-primary play-recitation">
+                                <i class="fas fa-play"></i>
+                                استماع
+                            </button>
+                            <button class="btn btn-icon add-to-favorites" title="إضافة للمفضلة">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- القسم السفلي -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>القرآن الكريم</h2>
+                    <p>موقع شامل للقرآن الكريم يقدم خدمات القراءة والاستماع والتفسير والتعلم</p>
+                </div>
+                <div class="footer-links">
+                    <div class="links-column">
+                        <h3>روابط سريعة</h3>
+                        <ul>
+                            <li><a href="../index.html">الرئيسية</a></li>
+                            <li><a href="reading.html">القراءة</a></li>
+                            <li><a href="listening.html">الاستماع</a></li>
+                            <li><a href="tafsir.html">التفسير</a></li>
+                            <li><a href="learning.html">التعلم والحفظ</a></li>
+                        </ul>
+                    </div>
+                    <div class="links-column">
+                        <h3>الدعم</h3>
+                        <ul>
+                            <li><a href="contact.html">اتصل بنا</a></li>
+                            <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                            <li><a href="privacy.html">سياسة الخصوصية</a></li>
+                            <li><a href="terms.html">شروط الاستخدام</a></li>
+                        </ul>
+                    </div>
+                    <div class="links-column">
+                        <h3>تابعنا</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة &copy; 2025 - موقع القرآن الكريم</p>
+                <p>تم إنشاء هذا الموقع بواسطة <strong>المهندس صبري رضوان</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- نوافذ منبثقة -->
+    <!-- نافذة تسجيل الدخول -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>تسجيل الدخول</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">البريد الإلكتروني</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">كلمة المرور</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">تسجيل الدخول</button>
+                </div>
+                <div class="form-footer">
+                    <a href="#" id="forgotPasswordLink">نسيت كلمة المرور؟</a>
+                    <a href="#" id="showRegisterLink">إنشاء حساب جديد</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة إنشاء حساب -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>إنشاء حساب جديد</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">الاسم</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerUsername">اسم المستخدم</label>
+                    <input type="text" id="registerUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">البريد الإلكتروني</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">كلمة المرور</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">تأكيد كلمة المرور</label>
+                    <input type="password" id="registerConfirmPassword" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">إنشاء حساب</button>
+                </div>
+                <div class="form-footer">
+                    <a href="#" id="showLoginLink">لديك حساب بالفعل؟ تسجيل الدخول</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ملفات JavaScript -->
+    <script src="../js/main.js"></script>
+    <script src="../js/quran.js"></script>
+    <script src="../js/audio-player.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // تهيئة علامات التبويب
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // إزالة الفئة النشطة من جميع الأزرار
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    // إضافة الفئة النشطة للزر المحدد
+                    this.classList.add('active');
+                    
+                    // إخفاء جميع المحتويات
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // إظهار المحتوى المطلوب
+                    const tabId = this.getAttribute('data-tab') + 'Tab';
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // تحميل بيانات السور
+            loadSurahs();
+            
+            // تحميل بيانات القراء
+            loadReciters();
+            
+            // تحميل المفضلة
+            loadFavorites();
+            
+            // تهيئة أحداث البحث والتصفية
+            const surahSearch = document.getElementById('surahSearch');
+            if (surahSearch) {
+                surahSearch.addEventListener('input', function() {
+                    filterSurahs(this.value);
+                });
+            }
+            
+            const reciterSearch = document.getElementById('reciterSearch');
+            if (reciterSearch) {
+                reciterSearch.addEventListener('input', function() {
+                    filterReciters(this.value);
+                });
+            }
+            
+            // تهيئة أحداث التلاوات المقترحة
+            const playButtons = document.querySelectorAll('.play-recitation');
+            playButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const card = this.closest('.recitation-card');
+                    const surahName = card.querySelector('h3').textContent;
+                    const reciterName = card.querySelector('p').textContent;
+                    
+                    // تحديث معلومات المشغل
+                    document.getElementById('playerTitle').textContent = surahName;
+                    document.getElementById('reciterName').textContent = reciterName;
+                    
+                    // تحميل الصوت وتشغيله
+                    // في الإنتاج، سنستخدم المسار الحقيقي
+                    const audio = document.getElementById('recitationAudio');
+                    audio.src = `../assets/audio/${getSurahNumber(surahName)}.mp3`;
+                    audio.play();
+                });
+            });
+            
+            // تهيئة أحداث إضافة للمفضلة
+            const favoriteButtons = document.querySelectorAll('.add-to-favorites');
+            favoriteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // التحقق من تسجيل الدخول
+                    if (localStorage.getItem('isLoggedIn') !== 'true') {
+                        alert('يرجى تسجيل الدخول لاستخدام ميزة المفضلة');
+                        return;
+                    }
+                    
+                    const card = this.closest('.recitation-card');
+                    const surahName = card.querySelector('h3').textContent;
+                    const reciterName = card.querySelector('p').textContent;
+                    
+                    // إضافة للمفضلة
+                    addToFavorites(surahName, reciterName);
+                    
+                    // تحديث الزر
+                    this.innerHTML = '<i class="fas fa-heart"></i>';
+                });
+            });
+            
+            // تهيئة أحداث سرعة التشغيل
+            const speedBtn = document.getElementById('speedBtn');
+            const speedOptions = document.querySelector('.speed-options');
+            
+            if (speedBtn && speedOptions) {
+                speedBtn.addEventListener('click', function() {
+                    speedOptions.style.display = speedOptions.style.display === 'none' ? 'block' : 'none';
+                });
+                
+                const speedOptionBtns = document.querySelectorAll('.speed-option');
+                speedOptionBtns.forEach(option => {
+                    option.addEventListener('click', function() {
+                        // إزالة الفئة النشطة من جميع الخيارات
+                        speedOptionBtns.forEach(opt => opt.classList.remove('active'));
+                        // إضافة الفئة النشطة للخيار المحدد
+                        this.classList.add('active');
+                        
+                        // تعيين سرعة التشغيل
+                        const speed = parseFloat(this.getAttribute('data-speed'));
+                        window.audioPlayerJS.setPlaybackSpeed(speed);
+                        
+                        // إخفاء قائمة الخيارات
+                        speedOptions.style.display = 'none';
+                    });
+                });
+            }
+            
+            // تهيئة أحداث التكرار
+            const repeatBtn = document.getElementById('repeatRecitationBtn');
+            const repeatOptions = document.querySelector('.repeat-options');
+            
+            if (repeatBtn && repeatOptions) {
+                repeatBtn.addEventListener('click', function() {
+                    repeatOptions.style.display = repeatOptions.style.display === 'none' ? 'block' : 'none';
+                });
+                
+                const repeatRangeCheck = document.getElementById('repeatRangeCheck');
+                const rangeInputs = document.querySelector('.range-inputs');
+                
+                if (repeatRangeCheck && rangeInputs) {
+                    repeatRangeCheck.addEventListener('change', function() {
+                        rangeInputs.style.display = this.checked ? 'block' : 'none';
+                    });
+                }
+            }
+            
+            // استخراج معلمات URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const surahParam = urlParams.get('surah');
+            const reciterParam = urlParams.get('reciter');
+            
+            if (surahParam) {
+                // تحميل السورة المحددة
+                loadSurahAudio(surahParam, reciterParam || 'mishari-rashid-alafasy');
+            }
+        });
+        
+        // تحميل بيانات السور
+        function loadSurahs() {
+            const surahsList = document.querySelector('.surahs-list');
+            
+            // في بيئة التطوير، نستخدم بيانات محلية
+            // في الإنتاج، سنستخدم طلب API حقيقي
+            window.quranJS.loadQuranData()
+                .then(surahs => {
+                    surahsList.innerHTML = '';
+                    
+                    surahs.forEach(surah => {
+                        const surahItem = document.createElement('div');
+                        surahItem.className = 'surah-item';
+                        surahItem.setAttribute('data-surah-number', surah.number);
+                        
+                        surahItem.innerHTML = `
+                            <div class="surah-info">
+                                <span class="surah-number">${surah.number}</span>
+                                <div class="surah-name-container">
+                                    <h3 class="surah-name">${surah.name}</h3>
+                                    <p class="surah-details">
+                                        <span class="revelation-type">${surah.revelationType === 'Meccan' ? 'مكية' : 'مدنية'}</span>
+                                        <span class="ayah-count">${surah.numberOfAyahs} آية</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="surah-actions">
+                                <button class="btn btn-primary play-surah">
+                                    <i class="fas fa-play"></i>
+                                    استماع
+                                </button>
+                            </div>
+                        `;
+                        
+                        // إضافة حدث التشغيل
+                        const playButton = surahItem.querySelector('.play-surah');
+                        playButton.addEventListener('click', function() {
+                            loadSurahAudio(surah.number);
+                        });
+                        
+                        surahsList.appendChild(surahItem);
+                    });
+                })
+                .catch(error => {
+                    console.error('خطأ في تحميل بيانات السور:', error);
+                    surahsList.innerHTML = '<p class="error-message">حدث خطأ أثناء تحميل بيانات السور. يرجى المحاولة مرة أخرى.</p>';
+                });
+        }
+        
+        // تحميل بيانات القراء
+        function loadReciters() {
+            const recitersGrid = document.querySelector('.reciters-grid');
+            
+            // في بيئة التطوير، نستخدم بيانات محلية
+            // في الإنتاج، سنستخدم طلب API حقيقي
+            const reciters = [
+                { id: 'mishari-rashid-alafasy', name: 'مشاري راشد العفاسي', style: 'murattal', image: '../assets/images/reciters/alafasy.jpg' },
+                { id: 'abdul-basit-abdul-samad', name: 'عبد الباسط عبد الصمد', style: 'mujawwad', image: '../assets/images/reciters/abdul-basit.jpg' },
+                { id: 'mahmoud-khalil-al-husary', name: 'محمود خليل الحصري', style: 'mujawwad', image: '../assets/images/reciters/al-husary.jpg' },
+                { id: 'muhammad-siddiq-al-minshawi', name: 'محمد صديق المنشاوي', style: 'mujawwad', image: '../assets/images/reciters/al-minshawi.jpg' },
+                { id: 'maher-al-muaiqly', name: 'ماهر المعيقلي', style: 'murattal', image: '../assets/images/reciters/al-muaiqly.jpg' }
+            ];
+            
+            recitersGrid.innerHTML = '';
+            
+            reciters.forEach(reciter => {
+                const reciterCard = document.createElement('div');
+                reciterCard.className = 'reciter-card';
+                reciterCard.setAttribute('data-reciter-id', reciter.id);
+                reciterCard.setAttribute('data-style', reciter.style);
+                
+                reciterCard.innerHTML = `
+                    <div class="reciter-image-container">
+                        <img src="${reciter.image}" alt="${reciter.name}" class="reciter-image">
+                    </div>
+                    <div class="reciter-info">
+                        <h3 class="reciter-name">${reciter.name}</h3>
+                        <p class="reciter-style">${reciter.style === 'murattal' ? 'مرتل' : 'مجود'}</p>
+                    </div>
+                    <div class="reciter-actions">
+                        <button class="btn btn-primary select-reciter">اختيار</button>
+                    </div>
+                `;
+                
+                // إضافة حدث الاختيار
+                const selectButton = reciterCard.querySelector('.select-reciter');
+                selectButton.addEventListener('click', function() {
+                    // تحديث القارئ المحدد
+                    window.audioPlayerJS.changeReciter(reciter.id);
+                    
+                    // تحديث اسم القارئ في المشغل
+                    document.getElementById('reciterName').textContent = reciter.name;
+                    
+                    // تحديث عنوان URL
+                    const url = new URL(window.location);
+                    url.searchParams.set('reciter', reciter.id);
+                    window.history.pushState({}, '', url);
+                    
+                    // إظهار رسالة تأكيد
+                    alert(`تم اختيار القارئ ${reciter.name}`);
+                });
+                
+                recitersGrid.appendChild(reciterCard);
+            });
+        }
+        
+        // تحميل المفضلة
+        function loadFavorites() {
+            const favoritesList = document.querySelector('.favorites-list');
+            const favoritesEmpty = document.querySelector('.favorites-empty');
+            
+            // التحقق من تسجيل الدخول
+            if (localStorage.getItem('isLoggedIn') !== 'true') {
+                favoritesList.style.display = 'none';
+                favoritesEmpty.style.display = 'block';
+                favoritesEmpty.innerHTML = '<p>يرجى تسجيل الدخول لعرض التلاوات المفضلة.</p>';
+                return;
+            }
+            
+            // الحصول على المفضلة المحفوظة
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            
+            if (favorites.length === 0) {
+                favoritesList.style.display = 'none';
+                favoritesEmpty.style.display = 'block';
+                return;
+            }
+            
+            favoritesList.innerHTML = '';
+            favoritesEmpty.style.display = 'none';
+            
+            favorites.forEach(favorite => {
+                const favoriteItem = document.createElement('div');
+                favoriteItem.className = 'favorite-item';
+                
+                favoriteItem.innerHTML = `
+                    <div class="favorite-info">
+                        <h3>${favorite.surahName}</h3>
+                        <p>${favorite.reciterName}</p>
+                    </div>
+                    <div class="favorite-actions">
+                        <button class="btn btn-primary play-favorite">
+                            <i class="fas fa-play"></i>
+                            استماع
+                        </button>
+                        <button class="btn btn-icon remove-favorite" title="إزالة من المفضلة">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                
+                // إضافة حدث التشغيل
+                const playButton = favoriteItem.querySelector('.play-favorite');
+                playButton.addEventListener('click', function() {
+                    // تحديث معلومات المشغل
+                    document.getElementById('playerTitle').textContent = favorite.surahName;
+                    document.getElementById('reciterName').textContent = favorite.reciterName;
+                    
+                    // تحميل الصوت وتشغيله
+                    // في الإنتاج، سنستخدم المسار الحقيقي
+                    const audio = document.getElementById('recitationAudio');
+                    audio.src = `../assets/audio/${getSurahNumber(favorite.surahName)}.mp3`;
+                    audio.play();
+                });
+                
+                // إضافة حدث الإزالة
+                const removeButton = favoriteItem.querySelector('.remove-favorite');
+                removeButton.addEventListener('click', function() {
+                    removeFromFavorites(favorite.surahName, favorite.reciterName);
+                    favoriteItem.remove();
+                    
+                    // التحقق من وجود عناصر في المفضلة
+                    if (favoritesList.children.length === 0) {
+                        favoritesList.style.display = 'none';
+                        favoritesEmpty.style.display = 'block';
+                    }
+                });
+                
+                favoritesList.appendChild(favoriteItem);
+            });
+        }
+        
+        // تصفية السور
+        function filterSurahs(query) {
+            const surahItems = document.querySelectorAll('.surah-item');
+            
+            surahItems.forEach(item => {
+                const surahName = item.querySelector('.surah-name').textContent;
+                const surahNumber = item.getAttribute('data-surah-number');
+                
+                if (surahName.includes(query) || surahNumber.includes(query)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        
+        // تصفية القراء
+        function filterReciters(query) {
+            const reciterCards = document.querySelectorAll('.reciter-card');
+            
+            reciterCards.forEach(card => {
+                const reciterName = card.querySelector('.reciter-name').textContent;
+                
+                if (reciterName.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        // تحميل صوت سورة
+        function loadSurahAudio(surahNumber, reciterId) {
+            // تحديث معلومات المشغل
+            getSurahName(surahNumber)
+                .then(surahName => {
+                    document.getElementById('playerTitle').textContent = `سورة ${surahName}`;
+                });
+            
+            // تحميل الصوت وتشغيله
+            window.audioPlayerJS.loadSurahAudio(surahNumber);
+            window.audioPlayerJS.playAudio();
+            
+            // تحديث القارئ إذا تم تحديده
+            if (reciterId) {
+                window.audioPlayerJS.changeReciter(reciterId);
+                
+                // تحديث اسم القارئ في المشغل
+                getReciterName(reciterId)
+                    .then(reciterName => {
+                        document.getElementById('reciterName').textContent = reciterName;
+                    });
+            }
+        }
+        
+        // الحصول على اسم السورة
+        async function getSurahName(surahNumber) {
+            try {
+                // في بيئة التطوير، نستخدم بيانات محلية
+                // في الإنتاج، سنستخدم طلب API حقيقي
+                const surahNames = {
+                    1: "الفاتحة",
+                    2: "البقرة",
+                    3: "آل عمران",
+                    4: "النساء",
+                    5: "المائدة",
+                    6: "الأنعام",
+                    7: "الأعراف",
+                    8: "الأنفال",
+                    9: "التوبة",
+                    10: "يونس",
+                    // ... باقي السور
+                };
+                
+                return surahNames[surahNumber] || `سورة ${surahNumber}`;
+            } catch (error) {
+                console.error(`خطأ في الحصول على اسم السورة ${surahNumber}:`, error);
+                return `سورة ${surahNumber}`;
+            }
+        }
+        
+        // الحصول على رقم السورة
+        function getSurahNumber(surahName) {
+            // في بيئة التطوير، نستخدم بيانات محلية
+            // في الإنتاج، سنستخدم طلب API حقيقي
+            const surahNumbers = {
+                "سورة الفاتحة": 1,
+                "سورة البقرة": 2,
+                "سورة آل عمران": 3,
+                "سورة النساء": 4,
+                "سورة المائدة": 5,
+                "سورة الأنعام": 6,
+                "سورة الأعراف": 7,
+                "سورة الأنفال": 8,
+                "سورة التوبة": 9,
+                "سورة يونس": 10,
+                "سورة الكهف": 18,
+                "سورة يس": 36,
+                "سورة الرحمن": 55,
+                "سورة الواقعة": 56,
+                // ... باقي السور
+            };
+            
+            return surahNumbers[surahName] || 1;
+        }
+        
+        // الحصول على اسم القارئ
+        async function getReciterName(reciterId) {
+            try {
+                // في بيئة التطوير، نستخدم بيانات محلية
+                // في الإنتاج، سنستخدم طلب API حقيقي
+                const reciterNames = {
+                    'mishari-rashid-alafasy': 'مشاري راشد العفاسي',
+                    'abdul-basit-abdul-samad': 'عبد الباسط عبد الصمد',
+                    'mahmoud-khalil-al-husary': 'محمود خليل الحصري',
+                    'muhammad-siddiq-al-minshawi': 'محمد صديق المنشاوي',
+                    'maher-al-muaiqly': 'ماهر المعيقلي'
+                };
+                
+                return reciterNames[reciterId] || reciterId;
+            } catch (error) {
+                console.error(`خطأ في الحصول على اسم القارئ ${reciterId}:`, error);
+                return reciterId;
+            }
+        }
+        
+        // إضافة للمفضلة
+        function addToFavorites(surahName, reciterName) {
+            // الحصول على المفضلة المحفوظة
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            
+            // التحقق من وجود العنصر في المفضلة
+            const existingIndex = favorites.findIndex(f => 
+                f.surahName === surahName && f.reciterName === reciterName
+            );
+            
+            if (existingIndex === -1) {
+                // إضافة للمفضلة
+                favorites.push({
+                    surahName,
+                    reciterName,
+                    timestamp: new Date().toISOString()
+                });
+                
+                // حفظ المفضلة
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+                
+                // إظهار رسالة تأكيد
+                alert(`تمت إضافة ${surahName} بصوت ${reciterName} إلى المفضلة`);
+            }
+        }
+        
+        // إزالة من المفضلة
+        function removeFromFavorites(surahName, reciterName) {
+            // الحصول على المفضلة المحفوظة
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            
+            // البحث عن العنصر في المفضلة
+            const index = favorites.findIndex(f => 
+                f.surahName === surahName && f.reciterName === reciterName
+            );
+            
+            if (index !== -1) {
+                // إزالة من المفضلة
+                favorites.splice(index, 1);
+                
+                // حفظ المفضلة
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+            }
+        }
+    </script>
+</body>
+</html>

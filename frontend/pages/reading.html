@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>القرآن الكريم - صفحة القراءة</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/reading.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- القسم العلوي -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>القرآن الكريم</h1>
+            </div>
+            <nav>
+                <ul class="main-menu">
+                    <li><a href="../index.html">الرئيسية</a></li>
+                    <li class="active"><a href="reading.html">القراءة</a></li>
+                    <li><a href="listening.html">الاستماع</a></li>
+                    <li><a href="tafsir.html">التفسير</a></li>
+                    <li><a href="learning.html">التعلم والحفظ</a></li>
+                    <li><a href="tajweed.html">التجويد</a></li>
+                    <li><a href="kids.html">وضع الأطفال</a></li>
+                    <li><a href="qa.html">أسئلة وأجوبة</a></li>
+                </ul>
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+            <div class="user-actions">
+                <button id="loginBtn" class="btn btn-outline">تسجيل الدخول</button>
+                <button id="registerBtn" class="btn btn-primary">إنشاء حساب</button>
+                <div class="user-profile" style="display: none;">
+                    <img src="../assets/images/avatar.png" alt="صورة المستخدم" class="avatar">
+                    <span class="username">اسم المستخدم</span>
+                    <div class="dropdown-menu">
+                        <a href="#" id="profileLink">الملف الشخصي</a>
+                        <a href="#" id="settingsLink">الإعدادات</a>
+                        <a href="#" id="logoutLink">تسجيل الخروج</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <main>
+        <!-- شريط الأدوات -->
+        <div class="reading-toolbar">
+            <div class="container">
+                <div class="toolbar-section">
+                    <div class="surah-selector">
+                        <label for="surahSelect">السورة:</label>
+                        <select id="surahSelect">
+                            <option value="1">1. الفاتحة</option>
+                            <option value="2">2. البقرة</option>
+                            <option value="3">3. آل عمران</option>
+                            <option value="4">4. النساء</option>
+                            <option value="5">5. المائدة</option>
+                            <!-- سيتم إضافة باقي السور ديناميكيًا -->
+                        </select>
+                    </div>
+                    <div class="ayah-selector">
+                        <label for="ayahSelect">الآية:</label>
+                        <select id="ayahSelect">
+                            <option value="all">جميع الآيات</option>
+                            <!-- سيتم إضافة الآيات ديناميكيًا -->
+                        </select>
+                    </div>
+                    <div class="page-selector">
+                        <label for="pageSelect">الصفحة:</label>
+                        <select id="pageSelect">
+                            <!-- سيتم إضافة الصفحات ديناميكيًا -->
+                        </select>
+                    </div>
+                </div>
+                <div class="toolbar-section">
+                    <div class="display-options">
+                        <div class="font-size-controls">
+                            <button class="btn btn-icon font-size-control" data-action="decrease" title="تصغير الخط">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button class="btn btn-icon font-size-control" data-action="reset" title="حجم الخط الافتراضي">
+                                <i class="fas fa-font"></i>
+                            </button>
+                            <button class="btn btn-icon font-size-control" data-action="increase" title="تكبير الخط">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="display-mode">
+                            <label class="switch">
+                                <input type="checkbox" id="darkModeToggle">
+                                <span class="slider round"></span>
+                                <span class="switch-label">الوضع المظلم</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- محتوى القراءة -->
+        <section class="reading-content">
+            <div class="container">
+                <div class="reading-options">
+                    <div class="view-options">
+                        <button class="btn btn-sm active" data-view="text">نص</button>
+                        <button class="btn btn-sm" data-view="translation">ترجمة</button>
+                        <button class="btn btn-sm" data-view="tajweed">تجويد</button>
+                    </div>
+                    <div class="action-buttons">
+                        <button id="printBtn" class="btn btn-sm btn-outline">
+                            <i class="fas fa-print"></i>
+                            طباعة
+                        </button>
+                        <button id="downloadBtn" class="btn btn-sm btn-outline">
+                            <i class="fas fa-download"></i>
+                            تحميل
+                        </button>
+                        <button id="bookmarkPageBtn" class="btn btn-sm btn-outline">
+                            <i class="far fa-bookmark"></i>
+                            حفظ الصفحة
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="quranContent" class="quran-content">
+                    <!-- سيتم إضافة محتوى القرآن ديناميكيًا -->
+                    <div class="loading-spinner">جاري تحميل المحتوى...</div>
+                </div>
+                
+                <div class="pagination">
+                    <button id="prevPageBtn" class="btn btn-outline">
+                        <i class="fas fa-chevron-right"></i>
+                        الصفحة السابقة
+                    </button>
+                    <span class="page-info">الصفحة <span id="currentPage">1</span> من <span id="totalPages">604</span></span>
+                    <button id="nextPageBtn" class="btn btn-outline">
+                        الصفحة التالية
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- مشغل الصوت المصغر -->
+        <div class="mini-player">
+            <div class="container">
+                <div class="player-info">
+                    <div class="player-text">
+                        <h3 id="playerTitle">سورة الفاتحة</h3>
+                        <p id="playerSubtitle">القارئ: <span id="reciterName">مشاري راشد العفاسي</span></p>
+                    </div>
+                </div>
+                <div class="player-controls">
+                    <button id="prevAyahBtn" class="btn btn-icon" title="الآية السابقة">
+                        <i class="fas fa-step-backward"></i>
+                    </button>
+                    <button id="playRecitationBtn" class="btn btn-icon" title="تشغيل">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button id="pauseRecitationBtn" class="btn btn-icon" title="إيقاف مؤقت" style="display: none;">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <button id="stopRecitationBtn" class="btn btn-icon" title="إيقاف">
+                        <i class="fas fa-stop"></i>
+                    </button>
+                    <button id="nextAyahBtn" class="btn btn-icon" title="الآية التالية">
+                        <i class="fas fa-step-forward"></i>
+                    </button>
+                    <button id="repeatRecitationBtn" class="btn btn-icon" title="تكرار">
+                        <i class="fas fa-redo"></i>
+                    </button>
+                </div>
+                <div class="player-progress">
+                    <div class="progress-container">
+                        <div id="audioProgressBar" class="progress-bar"></div>
+                    </div>
+                    <div class="time-display">
+                        <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+                    </div>
+                </div>
+                <div class="player-settings">
+                    <div class="volume-control">
+                        <i class="fas fa-volume-up"></i>
+                        <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1">
+                    </div>
+                    <button id="expandPlayerBtn" class="btn btn-icon" title="توسيع المشغل">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+                <audio id="recitationAudio" preload="auto">
+                    <source src="" type="audio/mpeg">
+                    متصفحك لا يدعم تشغيل الصوت.
+                </audio>
+            </div>
+        </div>
+    </main>
+
+    <!-- القسم السفلي -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>القرآن الكريم</h2>
+                    <p>موقع شامل للقرآن الكريم يقدم خدمات القراءة والاستماع والتفسير والتعلم</p>
+                </div>
+                <div class="footer-links">
+                    <div class="links-column">
+                        <h3>روابط سريعة</h3>
+                        <ul>
+                            <li><a href="../index.html">الرئيسية</a></li>
+                            <li><a href="reading.html">القراءة</a></li>
+                            <li><a href="listening.html">الاستماع</a></li>
+                            <li><a href="tafsir.html">التفسير</a></li>
+                            <li><a href="learning.html">التعلم والحفظ</a></li>
+                        </ul>
+                    </div>
+                    <div class="links-column">
+                        <h3>الدعم</h3>
+                        <ul>
+                            <li><a href="contact.html">اتصل بنا</a></li>
+                            <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                            <li><a href="privacy.html">سياسة الخصوصية</a></li>
+                            <li><a href="terms.html">شروط الاستخدام</a></li>
+                        </ul>
+                    </div>
+                    <div class="links-column">
+                        <h3>تابعنا</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة &copy; 2025 - موقع القرآن الكريم</p>
+                <p>تم إنشاء هذا الموقع بواسطة <strong>المهندس صبري رضوان</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- نوافذ منبثقة -->
+    <!-- نافذة تسجيل الدخول -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>تسجيل الدخول</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">البريد الإلكتروني</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">كلمة المرور</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">تسجيل الدخول</button>
+                </div>
+                <div class="form-footer">
+                    <a href="#" id="forgotPasswordLink">نسيت كلمة المرور؟</a>
+                    <a href="#" id="showRegisterLink">إنشاء حساب جديد</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة إنشاء حساب -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>إنشاء حساب جديد</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">الاسم</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerUsername">اسم المستخدم</label>
+                    <input type="text" id="registerUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">البريد الإلكتروني</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">كلمة المرور</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">تأكيد كلمة المرور</label>
+                    <input type="password" id="registerConfirmPassword" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">إنشاء حساب</button>
+                </div>
+                <div class="form-footer">
+                    <a href="#" id="showLoginLink">لديك حساب بالفعل؟ تسجيل الدخول</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ملفات JavaScript -->
+    <script src="../js/main.js"></script>
+    <script src="../js/quran.js"></script>
+    <script src="../js/audio-player.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // تحميل بيانات السور
+            const surahSelect = document.getElementById('surahSelect');
+            const ayahSelect = document.getElementById('ayahSelect');
+            const quranContent = document.getElementById('quranContent');
+            
+            // استخراج معلمات URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const surahParam = urlParams.get('surah');
+            const ayahParam = urlParams.get('ayah');
+            
+            // تهيئة قائمة السور
+            window.quranJS.loadQuranData()
+                .then(surahs => {
+                    // إضافة السور إلى القائمة المنسدلة
+                    surahSelect.innerHTML = '';
+                    surahs.forEach(surah => {
+                        const option = document.createElement('option');
+                        option.value = surah.number;
+                        option.textContent = `${surah.number}. ${surah.name}`;
+                        surahSelect.appendChild(option);
+                    });
+                    
+                    // تحديد السورة من المعلمات أو الافتراضية
+                    if (surahParam) {
+                        surahSelect.value = surahParam;
+                    }
+                    
+                    // تحميل السورة المحددة
+                    loadSelectedSurah();
+                })
+                .catch(error => {
+                    console.error('خطأ في تحميل بيانات السور:', error);
+                    quranContent.innerHTML = '<p class="error-message">حدث خطأ أثناء تحميل بيانات القرآن. يرجى المحاولة مرة أخرى.</p>';
+                });
+            
+            // حدث تغيير السورة
+            surahSelect.addEventListener('change', function() {
+                loadSelectedSurah();
+                
+                // تحديث عنوان URL
+                const url = new URL(window.location);
+                url.searchParams.set('surah', this.value);
+                url.searchParams.delete('ayah');
+                window.history.pushState({}, '', url);
+            });
+            
+            // حدث تغيير الآية
+            ayahSelect.addEventListener('change', function() {
+                const ayahNumber = this.value;
+                
+                if (ayahNumber === 'all') {
+                    // عرض جميع الآيات
+                    loadSelectedSurah();
+                    
+                    // تحديث عنوان URL
+                    const url = new URL(window.location);
+                    url.searchParams.delete('ayah');
+                    window.history.pushState({}, '', url);
+                } else {
+                    // عرض آية محددة
+                    const surahNumber = surahSelect.value;
+                    
+                    window.quranJS.getAyah(surahNumber, ayahNumber)
+                        .then(ayah => {
+                            if (ayah) {
+                                quranContent.innerHTML = '';
+                                const ayahElement = document.createElement('div');
+                                ayahElement.className = 'ayah single-ayah';
+                                ayahElement.setAttribute('data-ayah-number', ayah.number);
+                                
+                                ayahElement.innerHTML = `
+                                    <div class="ayah-text">${ayah.text}</div>
+                                    <div class="ayah-actions">
+                                        <span class="ayah-number">${ayah.number}</span>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-icon play-ayah" title="استماع">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                            <button class="btn btn-icon tafsir-ayah" title="تفسير">
+                                                <i class="fas fa-book"></i>
+                                            </button>
+                                            <button class="btn btn-icon bookmark-ayah" title="حفظ">
+                                                <i class="far fa-bookmark"></i>
+                                            </button>
+                                            <button class="btn btn-icon share-ayah" title="مشاركة">
+                                                <i class="fas fa-share-alt"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                `;
+                                
+                                quranContent.appendChild(ayahElement);
+                                
+                                // إضافة أحداث للأزرار
+                                const playButton = ayahElement.querySelector('.play-ayah');
+                                if (playButton) {
+                                    playButton.addEventListener('click', function() {
+                                        window.audioPlayerJS.loadAyahAudio(surahNumber, ayahNumber);
+                                        window.audioPlayerJS.playAudio();
+                                    });
+                                }
+                            }
+                        })
+                        .catch(error => {
+                            console.error(`خطأ في تحميل الآية ${ayahNumber} من السورة ${surahNumber}:`, error);
+                            quranContent.innerHTML = '<p class="error-message">حدث خطأ أثناء تحميل الآية. يرجى المحاولة مرة أخرى.</p>';
+                        });
+                    
+                    // تحديث عنوان URL
+                    const url = new URL(window.location);
+                    url.searchParams.set('ayah', ayahNumber);
+                    window.history.pushState({}, '', url);
+                }
+            });
+            
+            // تحميل السورة المحددة
+            function loadSelectedSurah() {
+                const surahNumber = surahSelect.value;
+                
+                // عرض رسالة التحميل
+                quranContent.innerHTML = '<div class="loading-spinner">جاري تحميل المحتوى...</div>';
+                
+                // تحميل السورة
+                window.quranJS.getSurah(surahNumber)
+                    .then(surah => {
+                        if (surah) {
+                            // تحديث قائمة الآيات
+                            updateAyahSelect(surah.numberOfAyahs);
+                            
+                            // عرض السورة
+                            window.quranJS.renderSurah(surah, quranContent);
+                            
+                            // تحديد الآية من المعلمات إذا كانت موجودة
+                            if (ayahParam) {
+                                ayahSelect.value = ayahParam;
+                                ayahSelect.dispatchEvent(new Event('change'));
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.error(`خطأ في تحميل السورة ${surahNumber}:`, error);
+                        quranContent.innerHTML = '<p class="error-message">حدث خطأ أثناء تحميل السورة. يرجى المحاولة مرة أخرى.</p>';
+                    });
+            }
+            
+            // تحديث قائمة الآيات
+            function updateAyahSelect(numberOfAyahs) {
+                ayahSelect.innerHTML = '<option value="all">جميع الآيات</option>';
+                
+                for (let i = 1; i <= numberOfAyahs; i++) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.textContent = `الآية ${i}`;
+                    ayahSelect.appendChild(option);
+                }
+            }
+            
+            // أزرار التنقل بين الصفحات
+            const prevPageBtn = document.getElementById('prevPageBtn');
+            const nextPageBtn = document.getElementById('nextPageBtn');
+            const currentPageSpan = document.getElementById('currentPage');
+            
+            if (prevPageBtn) {
+                prevPageBtn.addEventListener('click', function() {
+                    const currentPage = parseInt(currentPageSpan.textContent);
+                    if (currentPage > 1) {
+                        navigateToPage(currentPage - 1);
+                    }
+                });
+            }
+            
+            if (nextPageBtn) {
+                nextPageBtn.addEventListener('click', function() {
+                    const currentPage = parseInt(currentPageSpan.textContent);
+                    const totalPages = parseInt(document.getElementById('totalPages').textContent);
+                    if (currentPage < totalPages) {
+                        navigateToPage(currentPage + 1);
+                    }
+                });
+            }
+            
+            // التنقل إلى صفحة محددة
+            function navigateToPage(pageNumber) {
+                // تحديث رقم الصفحة الحالية
+                currentPageSpan.textContent = pageNumber;
+                
+                // تحميل محتوى الصفحة
+                // في الإنتاج، سنستخدم طلب API حقيقي
+                // loadQuranPage(pageNumber);
+                
+                // تحديث عنوان URL
+                const url = new URL(window.location);
+                url.searchParams.set('page', pageNumber);
+                url.searchParams.delete('surah');
+                url.searchParams.delete('ayah');
+                window.history.pushState({}, '', url);
+            }
+            
+            // أزرار الطباعة والتحميل
+            const printBtn = document.getElementById('printBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const bookmarkPageBtn = document.getElementById('bookmarkPageBtn');
+            
+            if (printBtn) {
+                printBtn.addEventListener('click', function() {
+                    window.print();
+                });
+            }
+            
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', function() {
+                    // تنفيذ تحميل المحتوى كملف PDF
+                    alert('سيتم تنفيذ هذه الميزة في الإصدار القادم');
+                });
+            }
+            
+            if (bookmarkPageBtn) {
+                bookmarkPageBtn.addEventListener('click', function() {
+                    // التحقق من تسجيل الدخول
+                    if (localStorage.getItem('isLoggedIn') !== 'true') {
+                        alert('يرجى تسجيل الدخول لاستخدام ميزة الحفظ');
+                        return;
+                    }
+                    
+                    // حفظ الصفحة الحالية
+                    const currentPage = parseInt(currentPageSpan.textContent);
+                    const bookmarks = JSON.parse(localStorage.getItem('pageBookmarks') || '[]');
+                    
+                    // التحقق من وجود العلامة المرجعية
+                    const bookmarkIndex = bookmarks.findIndex(b => b.page === currentPage);
+                    
+                    if (bookmarkIndex === -1) {
+                        // إضافة علامة مرجعية جديدة
+                        bookmarks.push({
+                            page: currentPage,
+                            timestamp: new Date().toISOString()
+                        });
+                        
+                        // تحديث الزر
+                        this.innerHTML = '<i class="fas fa-bookmark"></i> تم الحفظ';
+                    } else {
+                        // إزالة العلامة المرجعية
+                        bookmarks.splice(bookmarkIndex, 1);
+                        
+                        // تحديث الزر
+                        this.innerHTML = '<i class="far fa-bookmark"></i> حفظ الصفحة';
+                    }
+                    
+                    // حفظ العلامات المرجعية
+                    localStorage.setItem('pageBookmarks', JSON.stringify(bookmarks));
+                });
+            }
+        });
+    </script>
+</body>
+</html>
